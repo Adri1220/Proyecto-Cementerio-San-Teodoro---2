@@ -25,6 +25,7 @@ body {
    height: 100%;
    background-color: var(--color-background); /* Aplicamos el tono Crema */
    color: var(--color-text-main);
+   scroll-behavior: smooth;
 }
 
 /* ==========================================================================

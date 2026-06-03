@@ -21,19 +21,18 @@
          <nav class="header__nav nav">
             <ul class="nav__list">
                <li class="nav__item">
-                  <a href="#" class="nav__link nav__link--active">Inicio</a>
-               </li>
-
-               <li class="nav__item">
-                  <!-- CAMBIO AQUÍ: Reemplazamos "Ilustres" -->
-                  <a href="#" class="nav__link">Catálogo 3D</a>
-               </li>
-
-               <li class="nav__item">
-                  <a href="#" class="nav__link">Historia</a>
+                  <a href="#inicio" class="nav__link nav__link--active"
+                     >Inicio</a
+                  >
                </li>
                <li class="nav__item">
-                  <a href="#" class="nav__link">Archivo</a>
+                  <a href="#historia" class="nav__link">Historia</a>
+               </li>
+               <li class="nav__item">
+                  <a href="#catalogo" class="nav__link">Catálogo 3D</a>
+               </li>
+               <li class="nav__item">
+                  <a href="#location" class="nav__link">Ubicación</a>
                </li>
             </ul>
          </nav>
@@ -80,7 +79,7 @@
             </div>
          </section>
          <!------------- SECCION ABOUT------------->
-         <section class="about">
+         <section class="about" id="historia">
             <div class="about__container">
                <div class="about__image-wrapper">
                   <div class="about__image-frame"></div>
@@ -121,7 +120,7 @@
             </div>
          </section>
          <!------------- SECCION CATALOG ------------->
-         <section class="catalog">
+         <section class="catalog" id="catalogo">
             <div class="catalog__header">
                <span class="catalog__subtitle">GALERÍA DE LA MEMORIA</span>
                <h2 class="catalog__title">Obras Destacadas</h2>
@@ -179,7 +178,7 @@
                </article>
             </div>
          </section>
-         <!--------------- SECTION DE CONTACTAR ----------------->
+         <!--------------- SECCION DE CONTACTAR ----------------->
          <section class="cta">
             <div class="cta__container">
                <h2 class="cta__title">Únase a la Preservación</h2>
@@ -191,7 +190,8 @@
                <a href="#" class="cta__link">CONTACTAR CON ARCHIVÍSTICA</a>
             </div>
          </section>
-         <section class="location">
+         <!--------------- SECCION DE LOCALIZACION ----------------->
+         <section class="location" id="location">
             <div class="location__header">
                <span class="catalog__subtitle">¿CÓMO LLEGAR?</span>
                <h2 class="about__title">Ubicación del Cementerio</h2>
