@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Archivo Digital San Teodoro</title>
+
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Public+Sans:wght@400;600&display=swap"
+         rel="stylesheet"
+      />
+
+      <link rel="stylesheet" href="css/styles.css" />
+      <script src="js/main.js"></script>
+   </head>
+   <body class="grid-container">
+      <header class="header">
+         <div class="header__logo">San Teodoro</div>
+         <nav class="header__nav nav">
+            <ul class="nav__list">
+               <li class="nav__item">
+                  <a href="#" class="nav__link nav__link--active">Inicio</a>
+               </li>
+
+               <li class="nav__item">
+                  <!-- CAMBIO AQUÍ: Reemplazamos "Ilustres" -->
+                  <a href="#" class="nav__link">Catálogo 3D</a>
+               </li>
+
+               <li class="nav__item">
+                  <a href="#" class="nav__link">Historia</a>
+               </li>
+               <li class="nav__item">
+                  <a href="#" class="nav__link">Archivo</a>
+               </li>
+            </ul>
+         </nav>
+         <div class="header__icon">
+            <svg
+               width="24"
+               height="24"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="2"
+               stroke-linecap="square"
+               stroke-linejoin="miter"
+            >
+               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+         </div>
+      </header>
+
+      <main class="main">
+         <section class="hero">
+            <div class="hero__overlay"></div>
+            <!------------- SECCION HERO ------------->
+            <div class="hero__content">
+               <!-- Cambiamos la etiqueta para dar contexto inmediato -->
+               <span class="hero__label">REPOSITORIO DE ARTE FUNERARIO</span>
+
+               <h1 class="hero__title">Preservando el Arte de Piura</h1>
+
+               <!-- El texto ahora incluye las palabras clave de Mariana: nichos, esculturas y digitalización -->
+               <p class="hero__text">
+                  Un museo a cielo abierto. Este archivo preserva el valor
+                  histórico y arquitectónico de los nichos y esculturas del
+                  Cementerio San Teodoro mediante digitalización por
+                  fotogrametría.
+               </p>
+
+               <div class="hero__actions">
+                  <!-- Botones orientados al nuevo objetivo -->
+                  <a href="#" class="btn btn--primary">Ver Catálogo 3D</a>
+                  <a href="#" class="btn btn--secondary">Sobre el Proyecto</a>
+               </div>
+            </div>
+         </section>
+         <!------------- SECCION ABOUT------------->
+         <section class="about">
+            <div class="about__container">
+               <div class="about__image-wrapper">
+                  <div class="about__image-frame"></div>
+                  <div class="about__img-placeholder">FOTO MAUSOLEO</div>
+               </div>
+
+               <div class="about__content">
+                  <h2 class="about__title">Un Museo a Cielo Abierto</h2>
+
+                  <p class="about__text">
+                     El Cementerio San Teodoro alberga un invaluable patrimonio
+                     arquitectónico y escultórico. Cada nicho y mausoleo
+                     representa una pieza fundamental del arte funerario
+                     regional que merece ser estudiada y preservada.
+                  </p>
+
+                  <p class="about__text">
+                     Este proyecto de tesis busca democratizar el acceso a
+                     nuestra historia. Mediante la digitalización por
+                     fotogrametría, logramos que estudiantes escolares,
+                     universitarios e investigadores puedan explorar estas obras
+                     a detalle desde cualquier lugar.
+                  </p>
+
+                  <div class="about__stats">
+                     <div class="stat">
+                        <!-- Corregimos la palabra "Años" -->
+                        <!-- <span class="stat__number">186+</span>
+                        <span class="stat__label">Años de Historia</span> -->
+                     </div>
+                     <div class="stat">
+                        <!-- Ajustamos la estadística a la realidad del prototipo -->
+                        <!-- <span class="stat__number">3</span> -->
+                        <!-- <span class="stat__label">Obras Digitalizadas</span> -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!------------- SECCION CATALOG ------------->
+         <section class="catalog">
+            <div class="catalog__header">
+               <span class="catalog__subtitle">GALERÍA DE LA MEMORIA</span>
+               <h2 class="catalog__title">Obras Destacadas</h2>
+               <div class="catalog__divider"></div>
+            </div>
+
+            <div class="catalog__grid">
+               <article class="card">
+                  <div class="card__image-wrapper">
+                     <div class="card__img-placeholder">MAUSOLEO EGUIGUREN</div>
+                  </div>
+                  <div class="card__content">
+                     <span class="card__category">ARQUITECTURA FUNERARIA</span>
+                     <h3 class="card__name">Estatua 1</h3>
+                     <p class="card__description">
+                        Estructura emblemática del cementerio, destacada por sus
+                        detalles arquitectónicos y valor histórico para la
+                        región.
+                     </p>
+                     <a href="obra.html" class="card__link"
+                        >Ver Modelo 3D &rarr;</a
+                     >
+                  </div>
+               </article>
+
+               <article class="card">
+                  <div class="card__image-wrapper">
+                     <div class="card__img-placeholder">estatua</div>
+                  </div>
+                  <div class="card__content">
+                     <span class="card__category">ESCULTURA EN MÁRMOL</span>
+                     <h3 class="card__name">Estatua 1</h3>
+                     <p class="card__description">
+                        Figura esculpida en mármol, un claro ejemplo del arte
+                        funerario importado a Piura en el siglo XIX.
+                     </p>
+                     <a href="#" class="card__link">Ver Modelo 3D &rarr;</a>
+                  </div>
+               </article>
+
+               <article class="card">
+                  <div class="card__image-wrapper">
+                     <div class="card__img-placeholder">Estatua 1</div>
+                  </div>
+                  <div class="card__content">
+                     <span class="card__category">ESCULTURA CLÁSICA</span>
+                     <h3 class="card__name">Estatua 1</h3>
+                     <p class="card__description">
+                        Obra representativa de la paz y el duelo. Digitalizada
+                        en alta resolución mediante fotogrametría para su
+                        estudio.
+                     </p>
+                     <a href="#" class="card__link">Ver Modelo 3D &rarr;</a>
+                  </div>
+               </article>
+            </div>
+         </section>
+         <!--------------- SECTION DE CONTACTAR ----------------->
+         <section class="cta">
+            <div class="cta__container">
+               <h2 class="cta__title">Únase a la Preservación</h2>
+               <p class="cta__text">
+                  ¿Posee registros familiares, fotografías o datos históricos
+                  vinculados al San Teodoro? Su contribución es vital para
+                  completar este rompecabezas histórico.
+               </p>
+               <a href="#" class="cta__link">CONTACTAR CON ARCHIVÍSTICA</a>
+            </div>
+         </section>
+         <section class="location">
+            <div class="location__header">
+               <span class="catalog__subtitle">¿CÓMO LLEGAR?</span>
+               <h2 class="about__title">Ubicación del Cementerio</h2>
+               <p class="about__text">
+                  El Cementerio General San Teodoro se encuentra en el corazón
+                  de Piura. Puedes visitarlo para estudiar las obras de arte
+                  funerario en la siguiente dirección:
+               </p>
+               <span
+                  class="card__category"
+                  style="margin-top: 16px; display: inline-block"
+               >
+                  📍 Av. Vice / Calle San Teodoro, Piura, Perú.
+               </span>
+            </div>
+
+            <div class="location__map-full">
+               <iframe
+                  src="https://maps.google.com/maps?q=Cementerio+San+Teodoro,+Piura,+Peru&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+               >
+               </iframe>
+            </div>
+         </section>
+      </main>
+
+      <!-- CAJA 3: EL FOOTER REAL -->
+      <footer class="footer">
+         <div class="footer__container">
+            <!-- Parte Superior: Marca y Enlaces -->
+            <div class="footer__top">
+               <!-- Izquierda: Logo y descripción -->
+               <div class="footer__brand">
+                  <span class="footer__logo">San Teodoro</span>
+                  <p class="footer__text">
+                     Prototipo de Repositorio Digital de Arte Funerario.<br />Proyecto
+                     de Tesis para la preservación del patrimonio histórico de
+                     Piura.
+                  </p>
+               </div>
+
+               <!-- Derecha: Columnas de Enlaces -->
+               <div class="footer__links-wrapper">
+                  <ul class="footer__list">
+                     <li><a href="#" class="footer__link">El Proyecto</a></li>
+                     <li><a href="#" class="footer__link">Catálogo 3D</a></li>
+                  </ul>
+                  <ul class="footer__list">
+                     <li><a href="#" class="footer__link">Investigación</a></li>
+                     <li><a href="#" class="footer__link">Contacto</a></li>
+                  </ul>
+               </div>
+            </div>
+
+            <!-- Parte Inferior: Legales -->
+            <div class="footer__bottom">
+               <span class="footer__copy"
+                  >© 2026 Repositorio San Teodoro. Piura, Perú.</span
+               >
+               <!-- <div class="footer__legal">
+                  <a href="#">Metodología</a>
+                  <a href="#">Créditos</a>
+               </div> -->
+            </div>
+         </div>
+      </footer>
+   </body>
+</html>
