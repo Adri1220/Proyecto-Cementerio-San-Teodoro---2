@@ -54,7 +54,7 @@
       </header>
 
       <main class="main">
-         <section class="hero">
+         <section class="hero" id="inicio">
             <div class="hero__overlay"></div>
             <!------------- SECCION HERO ------------->
             <div class="hero__content">
@@ -121,14 +121,24 @@
          </section>
          <!------------- SECCION CATALOG ------------->
          <section class="catalog" id="catalogo">
-            <div class="catalog__header">
-               <span class="catalog__subtitle">GALERÍA DE LA MEMORIA</span>
-               <h2 class="catalog__title">Obras Destacadas</h2>
-               <div class="catalog__divider"></div>
+            <h2 class="catalog__title">Catálogo 3D y Archivo</h2>
+
+            <!-- NUEVO: Botones de Filtro -->
+            <div class="catalog__filters">
+               <button
+                  class="filter-btn filter-btn--active"
+                  data-filter="todos"
+               >
+                  Todos
+               </button>
+               <button class="filter-btn" data-filter="escultura">
+                  Esculturas
+               </button>
+               <button class="filter-btn" data-filter="nicho">Nichos</button>
             </div>
 
             <div class="catalog__grid">
-               <article class="card">
+               <article class="card" data-category="escultura">
                   <div class="card__image-wrapper">
                      <div class="card__img-placeholder">MAUSOLEO EGUIGUREN</div>
                   </div>
@@ -146,7 +156,7 @@
                   </div>
                </article>
 
-               <article class="card">
+               <article class="card" data-category="nicho">
                   <div class="card__image-wrapper">
                      <div class="card__img-placeholder">estatua</div>
                   </div>
