@@ -782,35 +782,35 @@ body {
    border-radius: 50%;
 }
 
-/* Tabla de Metadatos */
+/* Evolución de los Metadatos a estilo ARCA */
 .artwork__meta {
-   list-style: none;
-   display: flex;
-   flex-direction: column;
+   display: grid;
+   grid-template-columns: 1fr 1fr; /* Dos columnas de datos */
+   gap: 0 40px; /* Separación horizontal */
    border-top: 1px solid var(--color-border-marble);
    margin-bottom: 40px;
+   padding: 0;
 }
 
 .meta-item {
    display: flex;
-   padding: 16px 0;
+   flex-direction: column;
+   gap: 8px;
+   padding: 20px 0;
    border-bottom: 1px solid var(--color-border-marble);
 }
 
 .meta-label {
-   width: 140px; /* Ancho fijo para que los dos puntos queden alineados */
    font-family: var(--font-sans);
    font-size: 12px;
    font-weight: 600;
-   color: var(--color-text-muted);
-   letter-spacing: 0.1em;
+   color: var(--color-text-main); /* Más oscuro como en ARCA */
 }
 
 .meta-value {
-   flex: 1;
    font-family: var(--font-sans);
    font-size: 14px;
-   color: var(--color-text-main);
+   color: var(--color-primary-gold); /* Datos en color para resaltar */
 }
 
 /* Reseña Histórica */
@@ -899,4 +899,96 @@ body {
 /* Clase para ocultar tarjetas con JS */
 .card.hidden {
    display: none;
+}
+
+/* ==========================================================================
+   14. NARRATIVE SECTION (Plantilla para Nichos - Estilo Revista)
+   ========================================================================== */
+.narrative {
+   padding: 120px 20px 100px 20px;
+   display: flex;
+   justify-content: center;
+}
+
+.narrative__container {
+   max-width: 1400px; /* Un poco más ancho para dar respiro a la imagen grande */
+   width: 100%;
+}
+
+.narrative__grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr; /* Mitad imagen, mitad texto */
+   gap: 80px;
+   align-items: start; /* Vital para que el sticky funcione */
+}
+
+/* La magia para que la imagen acompañe la lectura */
+.narrative__media {
+   position: sticky;
+   top: 120px; /* Se queda pegada debajo del Header */
+}
+
+.narrative__img {
+   width: 100%;
+   height: auto;
+   max-height: 75vh;
+   object-fit: cover;
+   border: 1px solid var(--color-border-marble);
+}
+
+.narrative__title {
+   font-family: var(--font-serif);
+   font-size: 48px;
+   color: var(--color-text-main);
+   line-height: 1.1;
+   margin-bottom: 8px;
+}
+
+.narrative__subtitle {
+   font-family: var(--font-sans);
+   font-size: 24px;
+   color: var(--color-text-muted);
+   margin-bottom: 32px;
+   display: block;
+}
+
+.narrative__tags {
+   display: flex;
+   gap: 12px;
+   margin-bottom: 24px;
+}
+
+.tag {
+   padding: 6px 16px;
+   border: 1px solid var(--color-text-main);
+   font-family: var(--font-sans);
+   font-size: 13px;
+   font-weight: 600;
+}
+
+.narrative__brief {
+   font-family: var(--font-sans);
+   font-size: 14px;
+   line-height: 1.6;
+   margin-bottom: 40px;
+   padding-bottom: 24px;
+   border-bottom: 1px solid var(--color-border-marble);
+}
+
+.narrative__story p {
+   font-family: var(--font-serif);
+   font-size: 18px; /* Letra un poco más grande para lectura prolongada */
+   line-height: 1.8;
+   color: var(--color-text-main);
+   margin-bottom: 24px;
+}
+
+/* Letra capital (Opcional, como en el diseño de HA!) */
+.dropcap {
+   float: left;
+   font-size: 64px;
+   line-height: 48px;
+   padding-top: 4px;
+   padding-right: 8px;
+   color: var(--color-primary-gold);
 }
