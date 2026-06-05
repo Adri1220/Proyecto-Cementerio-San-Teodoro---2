@@ -50,3 +50,37 @@ document.addEventListener("DOMContentLoaded", () => {
       });
    });
 });
+
+// ==========================================================================
+// 4. SCROLL SPY (Mejor Práctica: Intersection Observer)
+// ==========================================================================
+
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav__list .nav__link");
+
+// Configuramos el "vigilante"
+const observerOptions = {
+   root: null,
+   rootMargin: "-150px 0px -60% 0px", // Ignora el header fijo y la parte inferior
+   threshold: 0,
+};
+
+const observer = new IntersectionObserver((entries) => {
+   entries.forEach((entry) => {
+      // Si la sección entra en nuestra zona de visión...
+      if (entry.isIntersecting) {
+         const currentId = entry.target.getAttribute("id");
+
+         // Actualizamos el menú
+         navLinks.forEach((link) => {
+            link.classList.remove("nav__link--active");
+            if (link.getAttribute("href") === `#${currentId}`) {
+               link.classList.add("nav__link--active");
+            }
+         });
+      }
+   });
+}, observerOptions);
+
+// Le decimos al vigilante que observe cada una de nuestras secciones
+sections.forEach((section) => observer.observe(section));
