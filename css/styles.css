@@ -3,11 +3,12 @@
    ========================================================================== */
 :root {
    /* Paleta de Colores */
-   --color-background: #fcf9f8; /* Crema (Fondo principal) */
-   --color-text-main: #1c1b1b; /* Negro Tipográfico */
-   --color-text-muted: #4f4535; /* Gris oscuro */
-   --color-primary-gold: #785600; /* Dorado Antiguo */
-   --color-border-marble: #e5e2e1; /* Gris Mármol para líneas */
+   --color-background: #fcf9f8;
+   --color-text-main: #1c1b1b;
+   --color-text-muted: #4f4535;
+   --color-primary-gold: #785600; /* Dorado Antiguo (Para fondo claro) */
+   --color-gold-light: #e5b95c; /* NUEVO: Dorado Brillante (Para fondo oscuro) */
+   --color-border-marble: #e5e2e1;
 
    /* Tipografías */
    --font-serif: "EB Garamond", serif; /* Para Títulos */
@@ -188,13 +189,13 @@ body {
    font-size: 14px;
    font-weight: 600;
    letter-spacing: 0.1em;
-   color: var(--color-primary-gold);
+   color: var(--color-gold-light); /* Aplicamos el dorado brillante aquí */
 }
 
 /* Tipografía del título principal */
 .hero__title {
    font-family: var(--font-serif);
-   font-size: 44px;
+   font-size: 47px;
    font-weight: 500;
    font-style: italic; /* Le da el toque elegante de tu captura */
    line-height: 1.1;
@@ -204,9 +205,9 @@ body {
 /* Tipografía del párrafo */
 .hero__text {
    font-family: var(--font-sans);
-   font-size: 16px;
+   font-size: 18px;
    line-height: 1.6;
-   max-width: 650px;
+   max-width: 750px;
    margin-bottom: 24px;
 }
 
