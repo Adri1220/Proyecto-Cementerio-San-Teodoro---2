@@ -1,6 +1,6 @@
 const obras = {
-   eguiguren: {
-      titulo: "Mausoleo Eguiguren",
+   estatua1: {
+      titulo: "Virgen Llorosa",
       categoria: "ARQUITECTURA FUNERARIA",
       descripcion:
          "Estructura emblemática de estilo neoclásico en San Teodoro, destacada por sus detalles en mármol y su gran valor histórico para la región.",
@@ -8,9 +8,9 @@ const obras = {
       material: "Mármol de Carrara",
       autor: "Taller italiano de Génova",
    },
-   angel: {
+   estatua2: {
       titulo: "El Ángel del Silencio",
-      categoria: "ESCULTURA CLÁSICA",
+      categoria: "ARQUITECTURA FUNERARIA",
       descripcion:
          "Obra representativa de la paz y el duelo. Digitalizada en alta resolución para su estudio.",
       anio: "ca. 1905",

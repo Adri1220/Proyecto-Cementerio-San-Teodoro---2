@@ -90,3 +90,29 @@ const observadorDeSecciones = new IntersectionObserver((entradas) => {
 
 // 3. Le decimos al sensor que vigile cada sección
 secciones.forEach((seccion) => observadorDeSecciones.observe(seccion));
+
+document.addEventListener("DOMContentLoaded", () => {
+   // 1. Detectar qué ID viene en la URL (ej: obra.html?id=angel)
+   const urlParams = new URLSearchParams(window.location.search);
+   const obraId = urlParams.get("id");
+
+   // 2. Si hay un ID y existe en nuestra base de datos...
+   if (obraId && bancoDeObras[obraId]) {
+      const datos = bancoDeObras[obraId];
+
+      // 3. Inyectar los datos en el HTML usando los selectores (clases) que ya tienes
+      document.querySelector(".artwork__title").innerText = datos.titulo;
+      document.querySelector(".artwork__category").innerText = datos.categoria;
+      document.querySelector(".artwork__description p").innerText =
+         datos.descripcion;
+
+      // Inyectar los metadatos (Año, Material, Autor)
+      const metaValues = document.querySelectorAll(".meta-value");
+      metaValues[0].innerText = datos.anio;
+      metaValues[1].innerText = datos.material;
+      metaValues[2].innerText = datos.autor;
+
+      // Cambiar el título de la pestaña del navegador
+      document.title = `${datos.titulo} - San Teodoro`;
+   }
+});
