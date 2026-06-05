@@ -92,6 +92,11 @@ body {
    font-family: var(--font-serif);
    font-size: 28px;
    color: var(--color-primary-gold);
+   width: 160px;
+}
+
+.header__icon {
+   width: 160px;
 }
 
 /* El Menú central */
