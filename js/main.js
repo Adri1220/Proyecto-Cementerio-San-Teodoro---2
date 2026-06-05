@@ -120,3 +120,50 @@ document.addEventListener("DOMContentLoaded", () => {
       document.title = `${datos.titulo} - San Teodoro`;
    }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+   const urlParams = new URLSearchParams(window.location.search);
+   const id = urlParams.get("id");
+
+   if (id && obras[id]) {
+      const datos = obras[id];
+
+      // --- SI ESTAMOS EN OBRA.HTML (ESTATUAS) ---
+      if (document.querySelector(".artwork__title")) {
+         document.querySelector(".artwork__title").innerText = datos.titulo;
+         document.querySelector(".artwork__category").innerText =
+            datos.categoria;
+         document.querySelector(".artwork__description p").innerText =
+            datos.descripcion;
+
+         if (datos.conservacion) {
+            document.querySelector(".artwork__status").innerHTML =
+               `<span class="status-dot"></span> ${datos.conservacion}`;
+         }
+
+         const metaValues = document.querySelectorAll(".meta-value");
+         if (metaValues.length >= 3) {
+            metaValues[0].innerText = datos.anio;
+            metaValues[1].innerText = datos.material;
+            metaValues[2].innerText = datos.autor;
+         }
+      }
+
+      // --- SI ESTAMOS EN NICHO.HTML (NICHOS) ---
+      if (document.querySelector(".narrative__title")) {
+         document.querySelector(".narrative__title").innerText = datos.titulo;
+         document.querySelector(".narrative__subtitle").innerText =
+            datos.subtitulo;
+         document.querySelector(".narrative__story").innerHTML =
+            `<p>${datos.descripcion}</p>`;
+
+         document.querySelector(".narrative__brief").innerHTML = `
+            <p><strong>Ubicación:</strong> ${datos.ubicacion}</p>
+            <p><strong>Material:</strong> ${datos.material}</p>
+         `;
+      }
+
+      // Cambiar el título de la pestaña del navegador para ambos casos
+      document.title = `${datos.titulo} - San Teodoro`;
+   }
+});
