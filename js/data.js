@@ -7,6 +7,7 @@ const obras = {
       anio: "ca. 1880",
       material: "Mármol de Carrara",
       autor: "Taller italiano de Génova",
+      conservacion: "CONSERVACIÓN: REGULAR · REQUIERE MANTENIMIENTO", // <--- NUEVO DATO
    },
    estatua2: {
       titulo: "El Ángel del Silencio",
@@ -16,5 +17,6 @@ const obras = {
       anio: "ca. 1905",
       material: "Bronce",
       autor: "Anónimo",
+      conservacion: "CONSERVACIÓN: BUENO · INTERVENCIONES MENORES", // <--- NUEVO DATO
    },
 };

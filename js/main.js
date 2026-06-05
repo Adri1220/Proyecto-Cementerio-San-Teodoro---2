@@ -92,19 +92,23 @@ const observadorDeSecciones = new IntersectionObserver((entradas) => {
 secciones.forEach((seccion) => observadorDeSecciones.observe(seccion));
 
 document.addEventListener("DOMContentLoaded", () => {
-   // 1. Detectar qué ID viene en la URL (ej: obra.html?id=angel)
+   // 1. Detectar qué ID viene en la URL (ej: obra.html?id=estatua1)
    const urlParams = new URLSearchParams(window.location.search);
    const obraId = urlParams.get("id");
 
-   // 2. Si hay un ID y existe en nuestra base de datos...
-   if (obraId && bancoDeObras[obraId]) {
-      const datos = bancoDeObras[obraId];
+   // 2. Si hay un ID y existe en nuestra base de datos (¡AQUÍ ESTABA EL DETALLE!)...
+   if (obraId && obras[obraId]) {
+      const datos = obras[obraId];
 
-      // 3. Inyectar los datos en el HTML usando los selectores (clases) que ya tienes
+      // 3. Inyectar los datos en el HTML
       document.querySelector(".artwork__title").innerText = datos.titulo;
       document.querySelector(".artwork__category").innerText = datos.categoria;
       document.querySelector(".artwork__description p").innerText =
          datos.descripcion;
+
+      // NUEVO: Inyectar conservación sin borrar el punto dorado
+      document.querySelector(".artwork__status").innerHTML =
+         `<span class="status-dot"></span> ${datos.conservacion}`;
 
       // Inyectar los metadatos (Año, Material, Autor)
       const metaValues = document.querySelectorAll(".meta-value");
