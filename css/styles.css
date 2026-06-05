@@ -22,7 +22,7 @@
 
 html,
 body {
-   height: 100%;
+   min-height: 100vh;
    background-color: var(--color-background); /* Aplicamos el tono Crema */
    color: var(--color-text-main);
    scroll-behavior: smooth;

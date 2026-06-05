@@ -52,35 +52,41 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================================================
-// 4. SCROLL SPY (Mejor Práctica: Intersection Observer)
+// SCROLL SPY (Vigilante de secciones para el menú)
 // ==========================================================================
 
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav__list .nav__link");
+// 1. Seleccionamos todas las secciones con ID y los enlaces del menú
+const secciones = document.querySelectorAll("section[id]");
+const enlacesMenu = document.querySelectorAll(".nav__link");
 
-// Configuramos el "vigilante"
-const observerOptions = {
+// 2. Configuramos el sensor
+const opcionesSensor = {
    root: null,
-   rootMargin: "-150px 0px -60% 0px", // Ignora el header fijo y la parte inferior
+   rootMargin: "-20% 0px -60% 0px", // Se activa cuando la sección llega a la mitad de la pantalla
    threshold: 0,
 };
 
-const observer = new IntersectionObserver((entries) => {
-   entries.forEach((entry) => {
-      // Si la sección entra en nuestra zona de visión...
-      if (entry.isIntersecting) {
-         const currentId = entry.target.getAttribute("id");
+const observadorDeSecciones = new IntersectionObserver((entradas) => {
+   entradas.forEach((entrada) => {
+      // Si la sección entra en el rango visible...
+      if (entrada.isIntersecting) {
+         const idVisible = entrada.target.getAttribute("id");
 
-         // Actualizamos el menú
-         navLinks.forEach((link) => {
-            link.classList.remove("nav__link--active");
-            if (link.getAttribute("href") === `#${currentId}`) {
-               link.classList.add("nav__link--active");
-            }
-         });
+         // Quitamos la clase activa de todos los enlaces
+         enlacesMenu.forEach((enlace) =>
+            enlace.classList.remove("nav__link--active"),
+         );
+
+         // Buscamos el enlace que coincide con el ID y le ponemos la clase
+         const enlaceActivo = document.querySelector(
+            `.nav__link[href="#${idVisible}"]`,
+         );
+         if (enlaceActivo) {
+            enlaceActivo.classList.add("nav__link--active");
+         }
       }
    });
-}, observerOptions);
+}, opcionesSensor);
 
-// Le decimos al vigilante que observe cada una de nuestras secciones
-sections.forEach((section) => observer.observe(section));
+// 3. Le decimos al sensor que vigile cada sección
+secciones.forEach((seccion) => observadorDeSecciones.observe(seccion));
