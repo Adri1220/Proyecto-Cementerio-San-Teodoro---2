@@ -1,7 +1,7 @@
 const obras = {
    "virgen-llorosa": {
       tipo: "escultura", // <-- NUEVO: Para el filtro
-      titulo: "Virgen De Prueba",
+      titulo: "Virgen Llorosa",
       categoria: "ARQUITECTURA FUNERARIA",
       descripcion:
          "Estructura emblemática de estilo neoclásico en San Teodoro, destacada por sus detalles en mármol y su gran valor histórico para la región.",
