@@ -1,5 +1,6 @@
 const obras = {
-   estatua1: {
+   // --- SLUG 1 ---
+   "virgen-llorosa": {
       titulo: "Virgen Llorosa",
       categoria: "ARQUITECTURA FUNERARIA",
       descripcion:
@@ -8,11 +9,11 @@ const obras = {
       material: "Mármol de Carrara",
       autor: "Taller italiano de Génova",
       conservacion: "CONSERVACIÓN: REGULAR · REQUIERE MANTENIMIENTO",
-      // NUEVO: Enlace exclusivo del modelo 3D en Sketchfab
-      modelo3d:
-         "https://sketchfab.com/models/c68bea66be5a405fb76e4771cf04b8c1/embed?autostart=1&ui_controls=1&ui_infos=0&ui_watermark=0",
+      modelo3d: "https://sketchfab.com/models/c68bea66be5a405fb76e4771cf04b8c1/embed?autostart=1&ui_controls=1&ui_infos=0&ui_watermark=0",
    },
-   estatua2: {
+   
+   // --- SLUG 2 ---
+   "angel-del-silencio": {
       titulo: "El Ángel del Silencio",
       categoria: "ARQUITECTURA FUNERARIA",
       descripcion:
@@ -21,12 +22,11 @@ const obras = {
       material: "Bronce",
       autor: "Anónimo",
       conservacion: "CONSERVACIÓN: BUENO · INTERVENCIONES MENORES",
-      // NUEVO: Enlace exclusivo del modelo 3D (Reemplazar cuando se tenga el real)
-      modelo3d:
-         "https://sketchfab.com/models/AQUI_VA_EL_OTRO_ID/embed?autostart=1&ui_controls=1&ui_infos=0&ui_watermark=0",
+      modelo3d: "https://sketchfab.com/models/AQUI_VA_EL_OTRO_ID/embed?autostart=1&ui_controls=1&ui_infos=0&ui_watermark=0",
    },
-   // NUEVO: El primer nicho dinámico
-   nicho1: {
+
+   // --- SLUG 3 ---
+   "tumba-frida-kahlo": {
       titulo: "Tumba de Frida Kahlo",
       subtitulo: "Nicho histórico del siglo XIX.",
       descripcion: `Lápida esculpida en piedra caliza local, un claro ejemplo de las técnicas de grabado importadas a la ciudad</p><p>

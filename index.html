@@ -41,14 +41,11 @@
       <main class="main">
          <section class="hero" id="inicio">
             <div class="hero__overlay"></div>
-            <!------------- SECCION HERO ------------->
             <div class="hero__content">
-               <!-- Cambiamos la etiqueta para dar contexto inmediato -->
                <span class="hero__label">REPOSITORIO DE ARTE FUNERARIO</span>
 
                <h1 class="hero__title">Preservando el Arte de Piura</h1>
 
-               <!-- El texto ahora incluye las palabras clave de Mariana: nichos, esculturas y digitalización -->
                <p class="hero__text">
                   Un museo a cielo abierto. Este archivo preserva el valor
                   histórico y arquitectónico de los nichos y esculturas del
@@ -57,7 +54,6 @@
                </p>
 
                <div class="hero__actions">
-                  <!-- Botones orientados al nuevo objetivo -->
                   <a href="#catalogo" class="btn btn--primary"
                      >Ver Catálogo 3D</a
                   >
@@ -67,7 +63,6 @@
                </div>
             </div>
          </section>
-         <!------------- SECCION ABOUT------------->
          <section class="about" id="historia">
             <div class="about__container">
                <div class="about__image-wrapper">
@@ -96,27 +91,12 @@
                      universitarios e investigadores puedan explorar estas obras
                      a detalle desde cualquier lugar.
                   </p>
-
-                  <div class="about__stats">
-                     <div class="stat">
-                        <!-- Corregimos la palabra "Años" -->
-                        <!-- <span class="stat__number">186+</span>
-                        <span class="stat__label">Años de Historia</span> -->
-                     </div>
-                     <div class="stat">
-                        <!-- Ajustamos la estadística a la realidad del prototipo -->
-                        <!-- <span class="stat__number">3</span> -->
-                        <!-- <span class="stat__label">Obras Digitalizadas</span> -->
-                     </div>
-                  </div>
                </div>
             </div>
          </section>
-         <!------------- SECCION CATALOG ------------->
          <section class="catalog" id="catalogo">
             <h2 class="catalog__title">Catálogo 3D y Archivo</h2>
 
-            <!-- NUEVO: Botones de Filtro -->
             <div class="catalog__filters">
                <button
                   class="filter-btn filter-btn--active"
@@ -129,7 +109,6 @@
                </button>
                <button class="filter-btn" data-filter="nicho">Nichos</button>
             </div>
-            <!--------------- TARJETA 1 ----------------->
             <div class="catalog__grid">
                <article class="card" data-category="escultura">
                   <div class="card__image-wrapper">
@@ -147,12 +126,11 @@
                         Teodoro, destacada por sus detalles en mármol y su gran
                         valor histórico para la región.
                      </p>
-                     <a href="obra.html?id=estatua1" class="card__link"
-                        >Conoce más &rarr;</a
+                     <a href="obra.html?id=virgen-llorosa" class="card__link"
+                        >Conoce más →</a
                      >
                   </div>
                </article>
-               <!--------------- TARJETA 2 ----------------->
                <article class="card" data-category="nicho">
                   <div class="card__image-wrapper">
                      <img
@@ -169,12 +147,13 @@
                         ejemplo de las técnicas de grabado importadas a la
                         ciudad durante el siglo XIX.
                      </p>
-                     <a href="nicho.html?id=nicho1" class="card__link"
-                        >Conoce más &rarr;</a
+                     <a
+                        href="nicho.html?id=tumba-frida-kahlo"
+                        class="card__link"
+                        >Conoce más →</a
                      >
                   </div>
                </article>
-               <!--------------- TARJETA 3 ----------------->
                <article class="card" data-category="escultura">
                   <div class="card__image-wrapper">
                      <img
@@ -191,14 +170,15 @@
                         en alta resolución mediante fotogrametría para su
                         preservación y estudio.
                      </p>
-                     <a href="obra.html?id=estatua2" class="card__link"
-                        >Conoce más &rarr;</a
+                     <a
+                        href="obra.html?id=angel-del-silencio"
+                        class="card__link"
+                        >Conoce más →</a
                      >
                   </div>
                </article>
             </div>
          </section>
-         <!--------------- SECCION DE CONTACTAR ----------------->
          <section class="cta">
             <div class="cta__container">
                <h2 class="cta__title">Únase a la Preservación</h2>
@@ -210,7 +190,6 @@
                <a href="#" class="cta__link">CONTACTAR CON ARCHIVÍSTICA</a>
             </div>
          </section>
-         <!--------------- SECCION DE LOCALIZACION ----------------->
          <section class="location" id="location">
             <div class="location__header">
                <span class="catalog__subtitle">¿CÓMO LLEGAR?</span>
@@ -243,12 +222,9 @@
          </section>
       </main>
 
-      <!-- CAJA 3: EL FOOTER REAL -->
       <footer class="footer">
          <div class="footer__container">
-            <!-- Parte Superior: Marca y Enlaces -->
             <div class="footer__top">
-               <!-- Izquierda: Logo y descripción -->
                <div class="footer__brand">
                   <span class="footer__logo">San Teodoro</span>
                   <p class="footer__text">
@@ -258,7 +234,6 @@
                   </p>
                </div>
 
-               <!-- Derecha: Columnas de Enlaces -->
                <div class="footer__links-wrapper">
                   <ul class="footer__list">
                      <li><a href="#" class="footer__link">El Proyecto</a></li>
@@ -271,15 +246,10 @@
                </div>
             </div>
 
-            <!-- Parte Inferior: Legales -->
             <div class="footer__bottom">
                <span class="footer__copy"
                   >© 2026 Repositorio San Teodoro. Piura, Perú.</span
                >
-               <!-- <div class="footer__legal">
-                  <a href="#">Metodología</a>
-                  <a href="#">Créditos</a>
-               </div> -->
             </div>
          </div>
       </footer>
