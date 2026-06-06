@@ -99,57 +99,78 @@ document.addEventListener("DOMContentLoaded", () => {
    const urlParams = new URLSearchParams(window.location.search);
    const id = urlParams.get("id");
 
-   if (id && obras[id]) {
-      const datos = obras[id];
+   // Identificamos si estamos dentro de una página interna (sea obra o nicho)
+   const pageContainer =
+      document.querySelector(".artwork__container") ||
+      document.querySelector(".narrative__container");
 
-      // --- A. LÓGICA PARA ESTATUAS (obra.html) ---
-      if (document.querySelector(".artwork__title")) {
-         document.querySelector(".artwork__title").innerText = datos.titulo;
-         document.querySelector(".artwork__category").innerText =
-            datos.categoria;
-         document.querySelector(".artwork__description p").innerHTML =
-            datos.descripcion;
+   if (pageContainer) {
+      // Condición A: El ID existe y la obra está en nuestra base de datos
+      if (id && typeof obras !== "undefined" && obras[id]) {
+         const datos = obras[id];
 
-         if (datos.conservacion) {
-            document.querySelector(".artwork__status").innerHTML =
-               `<span class="status-dot"></span> ${datos.conservacion}`;
+         // --- LÓGICA PARA ESTATUAS (obra.html) ---
+         if (document.querySelector(".artwork__title")) {
+            document.querySelector(".artwork__title").innerText = datos.titulo;
+            document.querySelector(".artwork__category").innerText =
+               datos.categoria;
+            document.querySelector(".artwork__description p").innerHTML =
+               datos.descripcion;
+
+            if (datos.conservacion) {
+               document.querySelector(".artwork__status").innerHTML =
+                  `<span class="status-dot"></span> ${datos.conservacion}`;
+            }
+
+            const metaValues = document.querySelectorAll(".meta-value");
+            if (metaValues.length >= 3) {
+               metaValues[0].innerText = datos.anio;
+               metaValues[1].innerText = datos.material;
+               metaValues[2].innerText = datos.autor;
+            }
+
+            if (datos.modelo3d) {
+               document.querySelector(".artwork__media").innerHTML = `
+                  <iframe title="Modelo 3D de ${datos.titulo}" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking; gyroscope; accelerometer" style="width: 100%; aspect-ratio: 4/3; border: 1px solid var(--color-border-marble);" src="${datos.modelo3d}"></iframe>
+                  <span class="artwork__media-caption">MODELO FOTOGRAMÉTRICO INTERACTIVO · ARRASTRA PARA ROTAR</span>
+               `;
+            }
          }
 
-         const metaValues = document.querySelectorAll(".meta-value");
-         if (metaValues.length >= 3) {
-            metaValues[0].innerText = datos.anio;
-            metaValues[1].innerText = datos.material;
-            metaValues[2].innerText = datos.autor;
-         }
+         // --- LÓGICA PARA NICHOS (nicho.html) ---
+         if (document.querySelector(".narrative__title")) {
+            document.querySelector(".narrative__title").innerText =
+               datos.titulo;
+            document.querySelector(".narrative__subtitle").innerText =
+               datos.subtitulo;
+            document.querySelector(".narrative__story").innerHTML =
+               `<p>${datos.descripcion}</p>`;
 
-         if (datos.modelo3d) {
-            document.querySelector(".artwork__media").innerHTML = `
-               <iframe title="Modelo 3D de ${datos.titulo}" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking; gyroscope; accelerometer" style="width: 100%; aspect-ratio: 4/3; border: 1px solid var(--color-border-marble);" src="${datos.modelo3d}"></iframe>
-               <span class="artwork__media-caption">MODELO FOTOGRAMÉTRICO INTERACTIVO · ARRASTRA PARA ROTAR</span>
+            document.querySelector(".narrative__brief").innerHTML = `
+               <p><strong>Ubicación:</strong> ${datos.ubicacion}</p>
+               <p><strong>Material:</strong> ${datos.material}</p>
             `;
+
+            if (datos.imagen) {
+               document.querySelector(".narrative__media").innerHTML =
+                  `<img src="${datos.imagen}" alt="Fotografía de ${datos.titulo}" class="narrative__img">`;
+            }
          }
-      }
 
-      // --- B. LÓGICA PARA NICHOS (nicho.html) ---
-      if (document.querySelector(".narrative__title")) {
-         document.querySelector(".narrative__title").innerText = datos.titulo;
-         document.querySelector(".narrative__subtitle").innerText =
-            datos.subtitulo;
-         document.querySelector(".narrative__story").innerHTML =
-            `<p>${datos.descripcion}</p>`;
-
-         document.querySelector(".narrative__brief").innerHTML = `
-            <p><strong>Ubicación:</strong> ${datos.ubicacion}</p>
-            <p><strong>Material:</strong> ${datos.material}</p>
+         // --- CAMBIO DE TÍTULO EN LA PESTAÑA DEL NAVEGADOR ---
+         document.title = `${datos.titulo} - Archivo San Teodoro`;
+      } else {
+         // Condición B: ERROR (El ID no existe, está mal escrito o entraron sin enlace)
+         pageContainer.innerHTML = `
+            <div style="text-align: center; padding: 100px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px;">
+               <h1 style="font-family: var(--font-serif); font-size: 48px; color: var(--color-text-main);">Registro no encontrado</h1>
+               <p style="font-family: var(--font-sans); font-size: 16px; color: var(--color-text-muted); max-width: 500px; line-height: 1.6;">
+                  Lo sentimos, la obra o nicho que intentas visualizar no existe en la base de datos actual o el enlace fue modificado.
+               </p>
+               <a href="index.html#catalogo" class="btn btn--primary" style="margin-top: 16px;">Volver al Catálogo 3D</a>
+            </div>
          `;
-
-         if (datos.imagen) {
-            document.querySelector(".narrative__media").innerHTML =
-               `<img src="${datos.imagen}" alt="Fotografía de ${datos.titulo}" class="narrative__img">`;
-         }
+         document.title = "No encontrado - Archivo San Teodoro";
       }
-
-      // --- C. CAMBIO DE TÍTULO EN LA PESTAÑA DEL NAVEGADOR ---
-      document.title = `${datos.titulo} - Archivo San Teodoro`;
    }
-});
+}); // <-- Fin del DOMContentLoaded global
