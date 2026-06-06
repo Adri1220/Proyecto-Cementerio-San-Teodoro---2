@@ -7,7 +7,10 @@ const obras = {
       anio: "ca. 1880",
       material: "Mármol de Carrara",
       autor: "Taller italiano de Génova",
-      conservacion: "CONSERVACIÓN: REGULAR · REQUIERE MANTENIMIENTO", // <--- NUEVO DATO
+      conservacion: "CONSERVACIÓN: REGULAR · REQUIERE MANTENIMIENTO",
+      // NUEVO: Enlace exclusivo del modelo 3D en Sketchfab
+      modelo3d:
+         "https://sketchfab.com/models/c68bea66be5a405fb76e4771cf04b8c1/embed?autostart=1&ui_controls=1&ui_infos=0&ui_watermark=0",
    },
    estatua2: {
       titulo: "El Ángel del Silencio",
@@ -17,16 +20,17 @@ const obras = {
       anio: "ca. 1905",
       material: "Bronce",
       autor: "Anónimo",
-      conservacion: "CONSERVACIÓN: BUENO · INTERVENCIONES MENORES", // <--- NUEVO DATO
+      conservacion: "CONSERVACIÓN: BUENO · INTERVENCIONES MENORES",
+      // NUEVO: Enlace exclusivo del modelo 3D (Reemplazar cuando se tenga el real)
+      modelo3d:
+         "https://sketchfab.com/models/AQUI_VA_EL_OTRO_ID/embed?autostart=1&ui_controls=1&ui_infos=0&ui_watermark=0",
    },
    // NUEVO: El primer nicho dinámico
    nicho1: {
       titulo: "Tumba de Frida Kahlo",
       subtitulo: "Nicho histórico del siglo XIX.",
       descripcion: `Lápida esculpida en piedra caliza local, un claro ejemplo de las técnicas de grabado importadas a la ciudad</p><p>
-         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias eveniet sit blanditiis voluptas esse 
-         assumenda hic nam, numquam id labore doloremque dolorum, architecto excepturi iure ullam iusto error 
-         nisi! Magnam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui magni quas alias esse officia 
+         Lorem ipsum, dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui magni quas alias esse officia 
          consectetur voluptatibus deleniti modi. Maiores possimus dignissimos numquam reprehenderit, impedit officia 
          architecto id ad tenetur repellat!Lorem Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
          Debitis blanditiis earum delectus eligendi necessitatibus, at error velit alias fugit iure dicta 
@@ -48,5 +52,6 @@ const obras = {
          it voluptate hic, nemo reprehenderit voluptatem a, cupiditate tempora.`,
       ubicacion: "Cuartel San Teodoro",
       material: "Piedra caliza local",
+      imagen: "img/nicho1.webp",
    },
 };
