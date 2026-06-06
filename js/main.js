@@ -34,61 +34,115 @@ document.addEventListener("DOMContentLoaded", () => {
    secciones.forEach((seccion) => observadorDeSecciones.observe(seccion));
 
    // ==========================================================================
-   // 2. GENERADOR AUTOMÁTICO DEL CATÁLOGO (index.html)
+   // 2 & 3. GENERADOR DE CATÁLOGO Y FILTROS CON PAGINACIÓN MATEMÁTICA
    // ==========================================================================
    const catalogGrid = document.querySelector(".catalog__grid");
 
    if (catalogGrid && typeof obras !== "undefined") {
-      let tarjetasHTML = "";
+      // Convertimos el objeto en un Array para poder hacer el "slicing"
+      const obrasArray = Object.entries(obras);
 
-      // Recorremos la base de datos para crear cada tarjeta
-      for (const [slug, datos] of Object.entries(obras)) {
-         // Determinamos a qué página debe llevar el enlace
-         const enlaceBase = datos.tipo === "nicho" ? "nicho.html" : "obra.html";
-         // Determinamos la categoría visual
-         const categoriaVisual =
-            datos.tipo === "nicho"
-               ? "NICHO HISTÓRICO"
-               : "ARQUITECTURA FUNERARIA";
+      // Estado de la aplicación (State)
+      let filtroActual = "todos";
+      let paginaActual = 1;
+      const elementosPorPagina = 6; // Límite de tarjetas por página
 
-         tarjetasHTML += `
-            <article class="card" data-category="${datos.tipo}">
-               <div class="card__image-wrapper">
-                  <img src="${datos.imagen}" alt="${datos.titulo}" class="card__img" />
-               </div>
-               <div class="card__content">
-                  <span class="card__category">${categoriaVisual}</span>
-                  <h3 class="card__name">${datos.titulo}</h3>
-                  <p class="card__description">${datos.descripcion.substring(0, 120)}...</p>
-                  <a href="${enlaceBase}?id=${slug}" class="card__link">Conoce más →</a>
-               </div>
-            </article>
-         `;
-      }
+      // Creamos la caja para los botones dinámicamente y la inyectamos en el DOM
+      const paginationContainer = document.createElement("div");
+      paginationContainer.classList.add("catalog__pagination");
+      catalogGrid.parentNode.insertBefore(
+         paginationContainer,
+         catalogGrid.nextSibling,
+      );
 
-      catalogGrid.innerHTML = tarjetasHTML;
+      // Función Maestra de Renderizado
+      const renderizarCatalogo = () => {
+         // 1. Filtrar
+         const obrasFiltradas = obrasArray.filter(([slug, datos]) => {
+            return filtroActual === "todos" || datos.tipo === filtroActual;
+         });
 
-      // ==========================================================================
-      // 3. INICIALIZAR FILTROS (Solo después de inyectar las tarjetas)
-      // ==========================================================================
+         // 2. Calcular Paginación
+         const totalPaginas = Math.ceil(
+            obrasFiltradas.length / elementosPorPagina,
+         );
+         if (paginaActual > totalPaginas && totalPaginas > 0)
+            paginaActual = totalPaginas;
+
+         // Slicing Matemático
+         const indiceInicio = (paginaActual - 1) * elementosPorPagina;
+         const indiceFin = indiceInicio + elementosPorPagina;
+         const obrasPagina = obrasFiltradas.slice(indiceInicio, indiceFin);
+
+         // 3. Dibujar Tarjetas
+         let tarjetasHTML = "";
+         obrasPagina.forEach(([slug, datos]) => {
+            const enlaceBase =
+               datos.tipo === "nicho" ? "nicho.html" : "obra.html";
+            const categoriaVisual =
+               datos.tipo === "nicho"
+                  ? "NICHO HISTÓRICO"
+                  : "ARQUITECTURA FUNERARIA";
+
+            tarjetasHTML += `
+               <article class="card" data-category="${datos.tipo}">
+                  <div class="card__image-wrapper">
+                     <img src="${datos.imagen}" alt="${datos.titulo}" class="card__img" />
+                  </div>
+                  <div class="card__content">
+                     <span class="card__category">${categoriaVisual}</span>
+                     <h3 class="card__name">${datos.titulo}</h3>
+                     <p class="card__description">${datos.descripcion.substring(0, 120)}...</p>
+                     <a href="${enlaceBase}?id=${slug}" class="card__link">Conoce más →</a>
+                  </div>
+               </article>
+            `;
+         });
+
+         catalogGrid.innerHTML =
+            tarjetasHTML ||
+            `<p style="grid-column: 1/-1; text-align:center; color: var(--color-text-muted);">No hay obras en esta categoría.</p>`;
+
+         // 4. Dibujar Botones Numéricos
+         let paginacionHTML = "";
+         if (totalPaginas > 1) {
+            for (let i = 1; i <= totalPaginas; i++) {
+               paginacionHTML += `
+                  <button class="page-btn ${i === paginaActual ? "page-btn--active" : ""}" data-page="${i}">
+                     ${i}
+                  </button>
+               `;
+            }
+         }
+         paginationContainer.innerHTML = paginacionHTML;
+
+         // 5. Asignar interactividad a los nuevos botones
+         document.querySelectorAll(".page-btn").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+               paginaActual = parseInt(e.target.getAttribute("data-page"));
+               renderizarCatalogo();
+
+               // Scroll suave para llevar al usuario al inicio del catálogo tras cambiar de página
+               document
+                  .querySelector("#catalogo")
+                  .scrollIntoView({ behavior: "smooth" });
+            });
+         });
+      };
+
+      // Inicialización por primera vez
+      renderizarCatalogo();
+
+      // Controladores de los filtros principales
       const filterBtns = document.querySelectorAll(".filter-btn");
-      const cards = document.querySelectorAll(".card");
-
       filterBtns.forEach((btn) => {
          btn.addEventListener("click", () => {
             filterBtns.forEach((b) => b.classList.remove("filter-btn--active"));
             btn.classList.add("filter-btn--active");
 
-            const filterValue = btn.getAttribute("data-filter");
-
-            cards.forEach((card) => {
-               const cardCategory = card.getAttribute("data-category");
-               if (filterValue === "todos" || filterValue === cardCategory) {
-                  card.classList.remove("hidden");
-               } else {
-                  card.classList.add("hidden");
-               }
-            });
+            filtroActual = btn.getAttribute("data-filter");
+            paginaActual = 1; // Reseteamos a la pág 1 siempre que cambian de categoría
+            renderizarCatalogo();
          });
       });
    }

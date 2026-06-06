@@ -266,6 +266,45 @@ body {
 }
 
 /* ==========================================================================
+   PAGINACIÓN DEL CATÁLOGO
+   ========================================================================== */
+.catalog__pagination {
+   display: flex;
+   justify-content: center;
+   gap: 8px;
+   margin-top: 40px; /* Separación entre las tarjetas y los botones */
+   width: 100%;
+}
+
+.page-btn {
+   width: 40px;
+   height: 40px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: transparent;
+   border: 1px solid var(--color-border-marble);
+   color: var(--color-text-muted);
+   font-family: var(--font-sans);
+   font-size: 14px;
+   font-weight: 600;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   border-radius: 0; /* Bordes rectos consistentes con tu diseño */
+}
+
+.page-btn:hover {
+   border-color: var(--color-primary-gold);
+   color: var(--color-primary-gold);
+}
+
+.page-btn--active {
+   background-color: var(--color-primary-gold);
+   border-color: var(--color-primary-gold);
+   color: #ffffff;
+}
+
+/* ==========================================================================
    6. ABOUT SECTION (Un Museo a Cielo Abierto)
    ========================================================================== */
 .about {
