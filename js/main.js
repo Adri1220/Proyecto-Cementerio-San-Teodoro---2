@@ -112,14 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
                <iframe
                   title="Modelo 3D de ${datos.titulo}"
                   frameborder="0"
-                  allowfullscreen
-                  mozallowfullscreen="true"
-                  webkitallowfullscreen="true"
-                  allow="autoplay; fullscreen; xr-spatial-tracking"
-                  xr-spatial-tracking
-                  execution-while-out-of-viewport
-                  execution-while-not-rendered
-                  web-share
+                  allow="autoplay; fullscreen; xr-spatial-tracking; gyroscope; accelerometer"
                   style="width: 100%; aspect-ratio: 4/3; border: 1px solid var(--color-border-marble);"
                   src="${datos.modelo3d}"
                ></iframe>
