@@ -492,7 +492,7 @@ body {
    /* Divide el espacio en 3 columnas exactamente iguales (1fr cada una) */
    grid-template-columns: repeat(3, 1fr);
    gap: 32px; /* Gutter exacto de tu DESIGN.md */
-   max-width: 1200px; /* Ancho máximo permitido para el contenedor */
+   max-width: 1000px; /* Ancho máximo permitido para el contenedor */
    width: 100%;
 }
 
@@ -522,7 +522,7 @@ body {
 /* Imagen real de la tarjeta */
 .card__img {
    width: 100%;
-   height: 380px; /* La misma altura que le dimos al placeholder gris */
+   height: 300px; /* La misma altura que le dimos al placeholder gris */
    object-fit: cover; /* MAGIA: Recorta la imagen automáticamente para llenar la caja sin deformarse */
    display: block; /* Evita pequeños márgenes invisibles debajo de la imagen */
 }
