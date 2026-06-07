@@ -426,10 +426,6 @@ body {
 }
 
 /* ==========================================================================
-   FILTROS DEL CATÁLOGO
-   ========================================================================== */
-
-/* ==========================================================================
    BUSCADOR DEL CATÁLOGO
    ========================================================================== */
 .catalog__search {
@@ -457,6 +453,32 @@ body {
 
 .search-input::placeholder {
    color: #999;
+}
+
+/* ==========================================================================
+   PERSONALIZACIÓN DE LA "X" DEL BUSCADOR (Webkit)
+   ========================================================================== */
+.search-input::-webkit-search-cancel-button {
+   -webkit-appearance: none;
+   appearance: none;
+   width: 14px;
+   height: 14px;
+   /* El color base de la X será tu gris oscuro/marrón */
+   background-color: var(--color-text-muted);
+   cursor: pointer;
+
+   /* Magia CSS: Usamos una máscara SVG para dibujar la X y pintarla con nuestro background-color */
+   -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'></line><line x1='6' y1='6' x2='18' y2='18'></line></svg>");
+   mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'></line><line x1='6' y1='6' x2='18' y2='18'></line></svg>");
+
+   -webkit-mask-size: cover;
+   mask-size: cover;
+   transition: background-color 0.3s ease;
+}
+
+/* Efecto hover: La X se vuelve dorada cuando el usuario le pasa el ratón */
+.search-input::-webkit-search-cancel-button:hover {
+   background-color: var(--color-primary-gold);
 }
 
 .catalog__filters {
