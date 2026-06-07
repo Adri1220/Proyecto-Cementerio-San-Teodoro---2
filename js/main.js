@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tarjetasHTML += `
                <article class="card" data-category="${datos.tipo}">
                   <div class="card__image-wrapper">
-                     <img src="${datos.imagen}" alt="${datos.titulo}" class="card__img" />
+                     <img src="${datos.imagen}" alt="${datos.titulo}" class="card__img" loading="lazy" />
                   </div>
                   <div class="card__content">
                      <span class="card__category">${categoriaVisual}</span>

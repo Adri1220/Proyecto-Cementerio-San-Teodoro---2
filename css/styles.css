@@ -242,9 +242,12 @@ body {
    border: 1px solid var(--color-primary-gold);
 }
 
-.btn--primary:hover {
-   background-color: #614600; /* Un dorado un poco más oscuro */
+.btn--primary:hover,
+.btn--primary:focus {
+   background-color: #614600;
    border-color: #614600;
+   outline: 2px solid var(--color-primary-gold); /* Ayuda visual para el teclado */
+   outline-offset: 2px;
 }
 
 /* Botón Secundario (Fondo transparente / "Ghost") */
