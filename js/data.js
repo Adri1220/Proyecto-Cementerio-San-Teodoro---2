@@ -11,7 +11,7 @@ const obras = {
       conservacion: "CONSERVACIÓN: REGULAR · REQUIERE MANTENIMIENTO",
       modelo3d:
          "https://sketchfab.com/models/c68bea66be5a405fb76e4771cf04b8c1/embed?autostart=1&ui_controls=1&ui_infos=0&ui_watermark=0",
-      imagen: "img/estatua 1.jpg", // <-- NUEVO: Para la portada
+      imagen: "img/estatua-1.jpg", // <-- NUEVO: Para la portada
    },
 
    "angel-del-silencio": {
@@ -78,6 +78,6 @@ const obras = {
       conservacion: "CONSERVACIÓN: BUENO · INTERVENCIONES MENORES",
       modelo3d:
          "https://sketchfab.com/models/c68bea66be5a405fb76e4771cf04b8c1/embed?autostart=1&ui_controls=1&ui_infos=0&ui_watermark=0",
-      imagen: "img/estatua3.jpg",
+      imagen: "img/estatua-3.jpg",
    },
 };
