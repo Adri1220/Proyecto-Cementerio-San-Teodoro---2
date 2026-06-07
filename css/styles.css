@@ -1081,3 +1081,137 @@ body {
    padding-right: 8px;
    color: var(--color-primary-gold);
 }
+
+/* ==========================================================================
+   15. DISEÑO RESPONSIVO (Tablets y Celulares)
+   ========================================================================== */
+
+/* --- TABLETS (Pantallas medianas, menos de 992px) --- */
+@media (max-width: 992px) {
+   /* El catálogo pasa de 3 a 2 columnas */
+   .catalog__grid {
+      grid-template-columns: repeat(2, 1fr);
+   }
+
+   /* La sección "Sobre el Proyecto" se apila */
+   .about__container {
+      flex-direction: column;
+      text-align: center;
+      gap: 40px;
+   }
+
+   .about__image-wrapper {
+      width: 100%;
+      max-width: 600px; /* Evita que la foto se vea gigantesca */
+   }
+
+   .about__stats {
+      justify-content: center;
+      border-left: none;
+      border-top: 2px solid var(--color-primary-gold);
+      padding-left: 0;
+      padding-top: 24px;
+   }
+
+   /* Las páginas internas (Obras y Nichos) pasan a 1 sola columna */
+   .artwork__grid,
+   .narrative__grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+   }
+
+   /* La foto en el relato de Nichos deja de estar pegada (sticky) y fluye normal */
+   .narrative__media {
+      position: relative;
+      top: 0;
+   }
+}
+
+/* --- CELULARES (Pantallas pequeñas, menos de 768px) --- */
+@media (max-width: 768px) {
+   /* 1. HEADER Y NAVEGACIÓN */
+   .header {
+      padding: 16px 20px;
+      flex-direction: column; /* Apila Logo, Menú e Icono */
+      gap: 16px;
+   }
+
+   .header--scrolled {
+      padding: 12px 20px;
+   }
+
+   .header__logo,
+   .header__icon {
+      width: auto;
+      text-align: center;
+   }
+
+   .nav__list {
+      gap: 16px;
+      flex-wrap: wrap; /* Si no caben, bajan de línea */
+      justify-content: center;
+   }
+
+   /* Ajuste para que el contenido no quede oculto detrás del header apilado */
+   .hero {
+      min-height: 90vh;
+      padding-top: 120px;
+   }
+
+   /* 2. TIPOGRAFÍAS Y ESPACIADOS (Escalado descendente) */
+   .hero__title {
+      font-size: 36px;
+   }
+   .about__title {
+      font-size: 28px;
+   }
+   .catalog__title {
+      font-size: 30px;
+   }
+   .narrative__title {
+      font-size: 36px;
+   }
+   .artwork__title {
+      font-size: 32px;
+   }
+
+   /* 3. CATÁLOGO */
+   /* Pasa a 1 sola columna en celulares */
+   .catalog__grid {
+      grid-template-columns: 1fr;
+   }
+
+   /* Los botones de filtro se vuelven envolventes */
+   .catalog__filters {
+      flex-wrap: wrap;
+   }
+
+   /* 4. METADATOS DE LA OBRA (ARCA) */
+   /* La cuadrícula de datos (Año, Material, Autor) pasa a 1 columna */
+   .artwork__meta {
+      grid-template-columns: 1fr;
+   }
+
+   /* 5. FOOTER (Pie de página) */
+   .footer__top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 40px;
+   }
+
+   .footer__links-wrapper {
+      flex-direction: column;
+      gap: 32px;
+   }
+
+   .footer__list {
+      align-items: center;
+   }
+
+   .footer__legal {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+   }
+}
