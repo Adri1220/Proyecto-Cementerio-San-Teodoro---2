@@ -34,20 +34,19 @@ document.addEventListener("DOMContentLoaded", () => {
    secciones.forEach((seccion) => observadorDeSecciones.observe(seccion));
 
    // ==========================================================================
-   // 2 & 3. GENERADOR DE CATÁLOGO Y FILTROS CON PAGINACIÓN MATEMÁTICA
+   // 2 & 3. GENERADOR DE CATÁLOGO, FILTROS Y BUSCADOR
    // ==========================================================================
    const catalogGrid = document.querySelector(".catalog__grid");
 
    if (catalogGrid && typeof obras !== "undefined") {
-      // Convertimos el objeto en un Array para poder hacer el "slicing"
       const obrasArray = Object.entries(obras);
 
-      // Estado de la aplicación (State)
+      // Estado de la aplicación
       let filtroActual = "todos";
+      let textoBusqueda = "";
       let paginaActual = 1;
-      const elementosPorPagina = 6; // Límite de tarjetas por página
+      const elementosPorPagina = 6;
 
-      // Creamos la caja para los botones dinámicamente y la inyectamos en el DOM
       const paginationContainer = document.createElement("div");
       paginationContainer.classList.add("catalog__pagination");
       catalogGrid.parentNode.insertBefore(
@@ -57,9 +56,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Función Maestra de Renderizado
       const renderizarCatalogo = () => {
-         // 1. Filtrar
+         // 1. Filtrar por Botón Y por Texto
          const obrasFiltradas = obrasArray.filter(([slug, datos]) => {
-            return filtroActual === "todos" || datos.tipo === filtroActual;
+            // A. Filtro de botones
+            const coincideCategoria =
+               filtroActual === "todos" || datos.tipo === filtroActual;
+
+            // B. Filtro de buscador (Restringido solo a Metadatos Clave)
+            const termino = textoBusqueda.toLowerCase().trim();
+
+            // Extraemos solo los datos principales, ignorando la "descripcion"
+            const titulo = (datos.titulo || "").toLowerCase();
+            const autor = (datos.autor || "").toLowerCase();
+            const material = (datos.material || "").toLowerCase();
+            const ubicacion = (datos.ubicacion || "").toLowerCase(); // Añadimos ubicación para los nichos
+
+            // El algoritmo ya no busca en la descripción
+            const coincideTexto =
+               titulo.includes(termino) ||
+               autor.includes(termino) ||
+               material.includes(termino) ||
+               ubicacion.includes(termino);
+
+            return coincideCategoria && coincideTexto;
          });
 
          // 2. Calcular Paginación
@@ -69,12 +88,12 @@ document.addEventListener("DOMContentLoaded", () => {
          if (paginaActual > totalPaginas && totalPaginas > 0)
             paginaActual = totalPaginas;
 
-         // Slicing Matemático
+         // 3. Slicing Matemático
          const indiceInicio = (paginaActual - 1) * elementosPorPagina;
          const indiceFin = indiceInicio + elementosPorPagina;
          const obrasPagina = obrasFiltradas.slice(indiceInicio, indiceFin);
 
-         // 3. Dibujar Tarjetas
+         // 4. Dibujar Tarjetas
          let tarjetasHTML = "";
          obrasPagina.forEach(([slug, datos]) => {
             const enlaceBase =
@@ -99,30 +118,25 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
          });
 
+         // Si no hay resultados, mostramos el mensaje de error elegante
          catalogGrid.innerHTML =
             tarjetasHTML ||
-            `<p style="grid-column: 1/-1; text-align:center; color: var(--color-text-muted);">No hay obras en esta categoría.</p>`;
+            `<p style="grid-column: 1/-1; text-align:center; color: var(--color-text-muted); font-family: var(--font-sans); padding: 40px;">No se encontraron resultados para "${textoBusqueda}".</p>`;
 
-         // 4. Dibujar Botones Numéricos
+         // 5. Dibujar Botones Numéricos
          let paginacionHTML = "";
          if (totalPaginas > 1) {
             for (let i = 1; i <= totalPaginas; i++) {
-               paginacionHTML += `
-                  <button class="page-btn ${i === paginaActual ? "page-btn--active" : ""}" data-page="${i}">
-                     ${i}
-                  </button>
-               `;
+               paginacionHTML += `<button class="page-btn ${i === paginaActual ? "page-btn--active" : ""}" data-page="${i}">${i}</button>`;
             }
          }
          paginationContainer.innerHTML = paginacionHTML;
 
-         // 5. Asignar interactividad a los nuevos botones
+         // 6. Asignar interactividad a la paginación
          document.querySelectorAll(".page-btn").forEach((btn) => {
             btn.addEventListener("click", (e) => {
                paginaActual = parseInt(e.target.getAttribute("data-page"));
                renderizarCatalogo();
-
-               // Scroll suave para llevar al usuario al inicio del catálogo tras cambiar de página
                document
                   .querySelector("#catalogo")
                   .scrollIntoView({ behavior: "smooth" });
@@ -133,7 +147,21 @@ document.addEventListener("DOMContentLoaded", () => {
       // Inicialización por primera vez
       renderizarCatalogo();
 
-      // Controladores de los filtros principales
+      // =====================================================
+      // CONTROLADORES DE EVENTOS (Listeners)
+      // =====================================================
+
+      // A. Controlador del Buscador de Texto
+      const searchInput = document.getElementById("searchInput");
+      if (searchInput) {
+         searchInput.addEventListener("input", (e) => {
+            textoBusqueda = e.target.value;
+            paginaActual = 1;
+            renderizarCatalogo();
+         });
+      }
+
+      // B. Controladores de los Botones de Filtro
       const filterBtns = document.querySelectorAll(".filter-btn");
       filterBtns.forEach((btn) => {
          btn.addEventListener("click", () => {
@@ -141,7 +169,10 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.classList.add("filter-btn--active");
 
             filtroActual = btn.getAttribute("data-filter");
-            paginaActual = 1; // Reseteamos a la pág 1 siempre que cambian de categoría
+            paginaActual = 1;
+            textoBusqueda = ""; // Limpiamos el buscador al cambiar de categoría
+            if (searchInput) searchInput.value = "";
+
             renderizarCatalogo();
          });
       });
@@ -153,17 +184,14 @@ document.addEventListener("DOMContentLoaded", () => {
    const urlParams = new URLSearchParams(window.location.search);
    const id = urlParams.get("id");
 
-   // Identificamos si estamos dentro de una página interna (sea obra o nicho)
    const pageContainer =
       document.querySelector(".artwork__container") ||
       document.querySelector(".narrative__container");
 
    if (pageContainer) {
-      // Condición A: El ID existe y la obra está en nuestra base de datos
       if (id && typeof obras !== "undefined" && obras[id]) {
          const datos = obras[id];
 
-         // --- LÓGICA PARA ESTATUAS (obra.html) ---
          if (document.querySelector(".artwork__title")) {
             document.querySelector(".artwork__title").innerText = datos.titulo;
             document.querySelector(".artwork__category").innerText =
@@ -191,7 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
          }
 
-         // --- LÓGICA PARA NICHOS (nicho.html) ---
          if (document.querySelector(".narrative__title")) {
             document.querySelector(".narrative__title").innerText =
                datos.titulo;
@@ -211,10 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
          }
 
-         // --- CAMBIO DE TÍTULO EN LA PESTAÑA DEL NAVEGADOR ---
          document.title = `${datos.titulo} - Archivo San Teodoro`;
       } else {
-         // Condición B: ERROR (El ID no existe, está mal escrito o entraron sin enlace)
          pageContainer.innerHTML = `
             <div style="text-align: center; padding: 100px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px;">
                <h1 style="font-family: var(--font-serif); font-size: 48px; color: var(--color-text-main);">Registro no encontrado</h1>
@@ -227,4 +252,4 @@ document.addEventListener("DOMContentLoaded", () => {
          document.title = "No encontrado - Archivo San Teodoro";
       }
    }
-}); // <-- Fin del DOMContentLoaded global
+});
